@@ -1,0 +1,55 @@
+ Theoretical traveltimes for a velocity model described by the formula
+
+     v(x,y,z) = v0 + kx*x + ky*y + kz*z
+
+ using Slotnick's analytical solution for traveltimes in a linear gradient
+ medium v(z) = v0 + kz
+
+     t = 1/k * arcosh(1 + k**2 (x**2 + z**2)/(2*v0*(v0+k*z))
+
+ in a tilted cylindrical coordinate system. The outputs are traveltime tables
+ on a regular shot and receiver grid.
+
+ SlotnickTT is built on the SEPlib framework
+
+ EXAMPLE:
+        SlotnickTT par=TT.par v0=5000 kx=0.1 ky=-0.1 kz=0.3 > TT.H
+
+ INPUT:
+	par=	traveltime table parameter file containing:
+		ns_xline_tt=       Number of shots along crossline axis.
+ 		ds_xline_tt=       Sampling of TT shots along crossline.
+ 		os_xline_tt=       Origin of the first crossline shot.
+ 		ns_iline_tt=       Number of shots along inline axis.
+ 		ds_iline_tt=       Sampling of TT shots along inline.
+ 		os_iline_tt=       Origin of the first inline shot.
+ 		n_xline_tt=        Crossline number of grid points.
+ 		d_xline_tt=        Crossline sampling of one traveltime cube.
+ 		n_iline_tt=        Inline number of grid points.
+ 		d_iline_tt=        Inline sampling of one traveltime cube.
+ 		n_z_tt=            Number of depth points.
+ 		d_z_tt=            Depth sampling interval.
+
+	v0=[1.0]	v(0,0,0), velocity at origin
+	kx=[0.0]	gradient in x-direction (inline)
+	ky=[0.0]	gradient in y-direction (crossline)
+	kz=[0.0]	gradient in z-direction (depth)
+
+        su=[0]		    0: SEP style tables (receiver position relative to shot)
+			                1: SU/SLT style tables (absolute receiver positions)
+        virieux=[0]	  0: Slotnick traveltime
+			                1: traveltimes for linear slowness^2 model
+			                   S^2(x,y,z) = 1/v0^2 + kx*x + ky*y + kz*z
+
+	data_format=[xdr_float]	output data format
+
+ OUTPUT:
+	SEP traveltime cube with
+		n1=n_z_tt
+		n2=n_iline_tt
+		n3=n_xline_tt
+		n4=ns_iline_tt
+		n5=ns_xline_tt
+
+ NOTE
+   Author: Moritz Fliedner - Feb, 2005
