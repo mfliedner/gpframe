@@ -49,7 +49,7 @@ int e2solver(double a0, double a1, double a2,
 
 double virieux(double x, double z, double k0, double k)
 {
-    double a0, a1, a2, r, s, t, t2, s2, s3, q, p;
+    double a0, a1, a2, r, s, t, t2, s2, s3, q = 0.0, p;
     double x1r, x1i, x2r, x2i, eps = 1.0e-20;
     int    ierr, iroot = 0;
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 #include <seplib.h>
 
 #include "slotnick.h"
@@ -12,7 +13,7 @@ int main(int argc, char *argv[])
 {
     float  xs, ys, ox, oy, oz, dx, dy, dz, osx, osy, dsx, dsy;
     float  kx, ky, kz, fv0, k0, *ft;
-    double v0, k, t, v, vs, x, y, z, r2, z2, rr, xx, yy, zz;
+    double v0, k, t, v, vs, x, y, z, r2, z2, rr, zz;
     int	   ix, iy, iz, isx, isy, nx, ny, nz, nsx, nsy, esize, isu, ivx;
     char   data_format[20];
 
