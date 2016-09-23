@@ -12,5 +12,6 @@
 !/log/.keep
 /tmp
 
-# ignore object files
-modules/obj
+# ignore binary files
+modules/bin/*
+modules/src/obj
