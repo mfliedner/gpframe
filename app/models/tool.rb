@@ -1,13 +1,16 @@
 # == Schema Information
 #
-# Table name: teams
+# Table name: tools
 #
 #  id         :integer          not null, primary key
-#  user_id    :integer
-#  project_id :integer
+#  executable :string
+#  help       :string
+#  name       :string
+#  tooltip    :string
+#  parameters :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Team < ActiveRecord::Base
+class Tool < ActiveRecord::Base
 end
