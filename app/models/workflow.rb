@@ -14,4 +14,8 @@
 #
 
 class Workflow < ActiveRecord::Base
+  def run
+    system "chmod +x #{self.path}"
+    system "#{self.path}"
+  end
 end
