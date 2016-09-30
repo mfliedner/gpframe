@@ -11,6 +11,7 @@
 #  history     :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  script      :string
 #
 
 require 'test_helper'

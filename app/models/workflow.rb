@@ -11,11 +11,12 @@
 #  history     :text
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  script      :string
 #
 
 class Workflow < ActiveRecord::Base
   def run
-    system "chmod +x #{self.path}"
-    system "#{self.path}"
+    system "chmod +x #{self.path}/#{self.script}"
+    system "#{self.path}/#{self.script}"
   end
 end
