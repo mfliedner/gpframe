@@ -19,4 +19,16 @@ class Workflow < ActiveRecord::Base
     system "chmod +x #{self.path}/#{self.script}"
     system "#{self.path}/#{self.script}"
   end
+
+  def log
+    timestamp = Time.now.to_s
+    file_name = "#{self.path}/#{self.script}"
+    contents = File.readlines(file_name)
+    if self.history
+      self.history += "\n\n" + timestamp + "\n"
+    else
+      self.history = timestamp + "\n"
+    end
+    contents.each { |line| self.history += line }
+  end
 end
