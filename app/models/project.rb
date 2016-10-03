@@ -1,3 +1,5 @@
+require "fileutils"
+
 # == Schema Information
 #
 # Table name: projects
@@ -12,4 +14,12 @@
 #
 
 class Project < ActiveRecord::Base
+  def create
+    begin
+      FileUtils.mkdir_p(self.path)
+    rescue
+      # TODO: add error handling
+      puts "Project directory #{self.path} cannot be created"
+    end
+  end
 end
