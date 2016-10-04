@@ -16,7 +16,9 @@ require "fileutils"
 class Project < ActiveRecord::Base
   def create
     begin
-      FileUtils.mkdir_p(self.path)
+      FileUtils.mkdir_p(self.path, :mode => 0775)
+      FileUtils.cd(self.path)
+      FileUtils.mkdir(["Data", "Flows"], :mode => 0775)
     rescue
       # TODO: add error handling
       puts "Project directory #{self.path} cannot be created"
