@@ -12,16 +12,19 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessor :email, :name, :provider, :uid
+  attr_accessor :password_digest
+  attr_reader :password
 
-  def self.create_with_omniauth(auth)
-    create! do |user|
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      if auth['info']
-         user.name = auth['info']['name'] || ""
-         user.email = auth['info']['email'] || ""
-      end
-    end
-  end
+  def password= password
+		self.password_digest = BCrypt::Password.create(password)
+		@password = password
+	end
+
+	def self.find_by_credentials(email, password)
+		user = User.find_by(email: email)
+		return nil unless user
+    return user if BCrypt::Password.new(user.password_digest).is_password?(password)
+	  nil
+	end
+
 end
