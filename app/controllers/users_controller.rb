@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save
-			# login(@user)
+			login(@user)
 			render "home/index"
 		else
 			render json: @user.errors, status: 422

@@ -2,17 +2,18 @@
 #
 # Table name: users
 #
-#  id         :integer          not null, primary key
-#  provider   :string
-#  uid        :string
-#  name       :string
-#  email      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id              :integer          not null, primary key
+#  provider        :string
+#  uid             :string
+#  name            :string
+#  email           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  password_digest :string
+#  session_token   :string
 #
 
 class User < ActiveRecord::Base
-  attr_accessor :password_digest
   attr_reader :password
 
   def password= password
@@ -27,4 +28,26 @@ class User < ActiveRecord::Base
 	  nil
 	end
 
+  def reset_session_token
+		self.session_token = new_session_token
+		ensure_session_token_uniqueness
+		self.save
+		self.session_token
+	end
+
+	private
+
+	def ensure_session_token
+		self.session_token ||= new_session_token
+	end
+
+	def new_session_token
+		SecureRandom.urlsafe_base64(16)
+	end
+
+	def ensure_session_token_uniqueness
+		while User.find_by(session_token: self.session_token)
+			self.session_token = new_session_token
+		end
+	end
 end
