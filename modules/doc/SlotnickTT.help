@@ -37,8 +37,8 @@
 
         su=[0]		    0: SEP style tables (receiver position relative to shot)
 			                1: SU/SLT style tables (absolute receiver positions)
-        virieux=[0]	  0: Slotnick traveltime
-			                1: traveltimes for linear slowness^2 model
+        sloth=[0]	    0: Slotnick traveltime
+			                1: traveltimes for linear sloth (slowness^2) model
 			                   S^2(x,y,z) = 1/v0^2 + kx*x + ky*y + kz*z
 
 	data_format=[xdr_float]	output data format

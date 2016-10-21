@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     if (!fetch ("os_xline_tt", "f", &osy)) osy = 0.0;
 
     if (!getch ("su",      "d", &isu)) isu = 0;
-    if (!getch ("virieux", "d", &ivx)) ivx = 0;
+    if (!getch ("sloth", "d", &ivx)) ivx = 0;
 
     putch ("esize", "d", &esize);
     putch ("n1",    "d", &nz);
