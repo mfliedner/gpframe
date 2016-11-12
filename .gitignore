@@ -15,10 +15,10 @@
 # ignore binary files
 modules/bin/*
 modules/src/obj
-modules/test
 
 # Ignore application configuration
 /config/application.yml
 
 # Ignore debugging
 .byebug_history
+
